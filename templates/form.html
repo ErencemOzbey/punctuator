@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punctuation and Casing Restoration</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Text Punctuation and Casing Restoration</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="input-section">
+                <h2>Input</h2>
+                <label for="input_file">Upload a File:</label>
+                <input type="file" id="input_file" name="input_file">
+                <label for="input_text">Or Enter Text:</label>
+                <textarea id="input_text" name="input_text" rows="4" cols="50">{{ input }}</textarea>
+            </div>
+
+            <div class="split-section">
+                <h2>Splitting Options</h2>
+                <label for="split_method">Choose split method:</label>
+                <input type="radio" id="line" name="split_method" value="line" checked>
+                <label for="line">Line by line</label>
+                <input type="radio" id="length" name="split_method" value="length">
+                <label for="length">By length</label>
+                <label for="split_length">Specify length:</label>
+                <input type="number" id="split_length" name="split_length">
+            </div>
+
+            <div class="output-section">
+                <h2>Output Options</h2>
+                <input type="checkbox" id="write_to_file" name="write_to_file" value="true">
+                <label for="write_to_file">Write output to file</label>
+            </div>
+
+            <div class="submit-section">
+                <input type="submit" value="Process">
+            </div>
+        </form>
+
+        <div class="results-section">
+            <h2>Processed Output:</h2>
+            {% if outputs %}
+            <ul>
+                {% for text in outputs %}
+                <li>{{ text }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
